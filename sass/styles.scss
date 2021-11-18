@@ -1,0 +1,285 @@
+@use "sass:math";
+
+@function fluid($min, $max, $minvw: 375px, $maxvw: 1440px) {
+  @return calc(
+    #{$min} + (#{math.div($max - $min, 1px)}) * ((100vw - #{$minvw}) /
+          (#{math.div($maxvw - $minvw, 1px)}))
+  );
+}
+
+$color-blue: hsl(223, 87%, 63%);
+$color-blue-pale: hsl(223, 100%, 88%);
+$color-red-light: hsl(354, 100%, 66%);
+
+$color-gray: hsl(0, 0%, 59%);
+$color-blue-vd: hsl(209, 33%, 12%);
+
+$font-wt-lt: 300;
+$font-wt-semib: 600;
+$font-wt-bold: 700;
+
+*,
+::before,
+::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Libre Franklin", sans-serif;
+}
+
+body {
+  font-size: 20px;
+  text-align: center;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+header {
+  // height: fluid(101px, 112px);
+  height: fluid(101px, 202px, 375px, 750px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  .logo {
+    height: fluid(17px, 34px, 375px, 750px);
+  }
+}
+
+main {
+  padding-bottom: fluid(80px, 160px, 375px, 750px);
+
+  .container {
+    width: fluid(320px, 640px, 375px, 750px);
+  }
+
+  .content .container {
+    // padding: 0 46px;
+    padding: 0 fluid(18px, 36px, 375px, 750px);
+  }
+
+  .content {
+    padding-top: fluid(39px, 78px, 375px, 750px);
+    font-size: fluid(12px, 24px, 375px, 750px);
+
+    h1 {
+      margin-bottom: fluid(20px, 40px, 375px, 750px);
+      font-size: fluid(22px, 44px, 375px, 750px);
+      font-weight: $font-wt-lt;
+      color: $color-gray;
+
+      em {
+        font-weight: $font-wt-bold;
+        font-style: normal;
+        color: $color-blue-vd;
+      }
+    }
+
+    .message {
+      margin-bottom: fluid(28px, 56px, 375px, 750px);
+    }
+
+    form {
+      height: fluid(159px, 318px, 375px, 750px);
+
+      .email,
+      .btn-submit {
+        height: fluid(40px, 80px, 375px, 750px);
+        width: 100%;
+        border-radius: 500px;
+        border: 1px solid $color-blue;
+        font-family: inherit;
+        font-size: inherit;
+      }
+
+      .email {
+        padding-left: fluid(34px, 68px, 375px, 750px);
+
+        &:active,
+        &:focus {
+          border: 2px inset $color-blue;
+          outline: none;
+        }
+
+        &::placeholder {
+          color: rgba($color-blue, 0.7);
+        }
+
+        &.with-error {
+          border: 2px inset $color-red-light;
+        }
+      }
+
+      .error-msg {
+        display: none;
+        color: $color-red-light;
+        font-style: italic;
+        font-size: fluid(10px, 20px, 375px, 750px);
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+      }
+
+      .btn-submit {
+        margin-top: fluid(10px, 20px, 375px, 750px);
+        background-color: $color-blue;
+        color: white;
+        font-weight: $font-wt-semib;
+        box-shadow: 0 0.33em 1.33em -0.6667em $color-blue;
+      }
+    }
+  }
+
+  .img-box {
+    .illustration {
+      width: 100%;
+    }
+  }
+}
+
+footer {
+  height: fluid(144px, 288px, 375px, 750px);
+
+  display: flex;
+  gap: fluid(28px, 56px, 375px, 750px);
+  flex-direction: column;
+  justify-content: center;
+
+  .social-icons {
+    display: flex;
+    gap: fluid(13px, 26px, 375px, 750px);
+    justify-content: center;
+
+    .icon {
+      height: fluid(32px, 64px, 375px, 750px);
+      width: fluid(32px, 64px, 375px, 750px);
+      border: 1px solid $color-blue-pale;
+      border-radius: 50%;
+      cursor: pointer;
+      color: $color-blue;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        color: white;
+        background-color: $color-blue;
+      }
+    }
+  }
+
+  .copyright {
+    font-size: fluid(10px, 20px, 375px, 750px);
+    color: $color-gray;
+  }
+
+  .attribution {
+    margin-top: fluid(4px, 8px, 375px, 750px);
+    font-size: fluid(8px, 16px, 375px, 750px);
+    text-align: center;
+    color: $color-gray;
+  }
+  .attribution a {
+    color: $color-blue;
+  }
+}
+
+@media (min-width: 751px) {
+  header {
+    height: 112px;
+
+    .logo {
+      height: 26px;
+    }
+  }
+
+  main {
+    padding-bottom: 20px;
+
+    .container {
+      max-width: 640px;
+    }
+
+    .content .container {
+      padding: 0;
+    }
+
+    .content {
+      font-size: 20px;
+
+      padding-top: 50px;
+
+      h1 {
+        margin-bottom: 20px;
+        font-size: 48px;
+      }
+
+      .message {
+        margin-bottom: 40px;
+      }
+
+      form {
+        height: 142px;
+
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+
+        .input-group {
+          flex: 1 0;
+        }
+
+        .email,
+        .btn-submit {
+          height: 56px;
+          font-size: 15px;
+        }
+
+        .email,
+        .error-msg {
+          padding-left: 30px;
+        }
+
+        .error-msg {
+          margin-top: 10px;
+          margin-bottom: 0;
+          font-size: 12px;
+          text-align: left;
+        }
+
+        .btn-submit {
+          flex: 0 0 200px;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  footer {
+    height: 162px;
+    gap: 25px;
+
+    .social-icons {
+      gap: 12px;
+
+      .icon {
+        height: 32px;
+        width: 32px;
+      }
+    }
+
+    .copyright {
+      font-size: 12px;
+    }
+
+    .attribution {
+      margin-top: 6px;
+      font-size: 9.5px;
+    }
+  }
+}
