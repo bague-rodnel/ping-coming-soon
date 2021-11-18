@@ -92,7 +92,7 @@ main {
         height: fluid(40px, 80px, 375px, 750px);
         width: 100%;
         border-radius: 500px;
-        border: 1px solid $color-blue;
+        border: 1px solid $color-blue-pale;
         font-family: inherit;
         font-size: inherit;
       }
@@ -130,6 +130,7 @@ main {
         color: white;
         font-weight: $font-wt-semib;
         box-shadow: 0 0.33em 1.33em -0.6667em $color-blue;
+        cursor: pointer;
       }
     }
   }

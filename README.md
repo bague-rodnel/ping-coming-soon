@@ -27,7 +27,7 @@ Users should be able to:
 ### Screenshots
 
 _375 x 812:_\
-![](./images/ss/375.JPG)\
+![](./images/ss/375.JPG)
 
 _1440 x 1024:_\
 ![](./images/ss/1440.JPG)
